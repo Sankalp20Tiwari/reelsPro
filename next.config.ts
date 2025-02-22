@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
         port: "",
       },
     ],
+    domains: ['images.pexels.com']
   },
 };
 
