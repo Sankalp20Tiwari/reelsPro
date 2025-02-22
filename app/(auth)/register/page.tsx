@@ -83,8 +83,8 @@ const RegisterPage = () => {
             <button type='submit' className='btn btn-active'>Register</button>
        </form>
        <div className='flex gap-2'>
-         <p>Already have an account?</p>
-         <Link href="/login" >Login</Link>
+         < p className='text-white'> Already have an account?</p>
+         <Link href="/login"  className='text-blue-700'>Login</Link>
        </div>
     </div>
   )

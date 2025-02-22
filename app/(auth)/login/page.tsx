@@ -90,7 +90,7 @@ const LoginPage = () => {
             <button type='submit' className='btn btn-active'>Login</button>
        </form>
        <div className='flex gap-2'>
-         <p>Don&apos;t have an account</p>
+         <p className='text-white'>Don&apos;t have an account?</p>
          <Link href="/login"  className='text-blue-700'>Sign up</Link>
        </div>
     </div>

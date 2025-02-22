@@ -21,7 +21,7 @@ const Header = () => {
     }
 
     return (
-        <header className=" text-white shadow-md py-4">
+        <header className=" text-white  shadow-md py-4 ">
             <div className="container flex justify-between items-center mx-auto px-6 md:px-20">
                 {/* Logo */}
                 <Link href="/">
@@ -50,12 +50,12 @@ const Header = () => {
                     ) : (
                         <div className="flex gap-4">
                             <Link href="/login">
-                                <button className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300">
+                                <button className=" text-white  py-2 px-6 rounded-md  transition duration-300">
                                     Login
                                 </button>
                             </Link>
                             <Link href="/register">
-                                <button className="bg-gray-800 text-white py-2 px-6 rounded-md hover:bg-gray-700 transition duration-300">
+                                <button className=" text-white py-2 px-6 rounded-md  transition duration-300">
                                     Register
                                 </button>
                             </Link>
@@ -81,12 +81,12 @@ const Header = () => {
                         ) : (
                             <>
                                 <Link href="/login">
-                                    <button className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300">
+                                    <button className="bg-black text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300">
                                         Login
                                     </button>
                                 </Link>
                                 <Link href="/register">
-                                    <button className="bg-gray-800 text-white py-2 px-6 rounded-md hover:bg-gray-700 transition duration-300">
+                                    <button className="bg-white text-black py-2 px-6 rounded-md hover:bg-gray-700 transition duration-300">
                                         Register
                                     </button>
                                 </Link>
