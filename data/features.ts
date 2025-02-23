@@ -1,4 +1,4 @@
-import { FaVideo, FaDownload, FaCloudUploadAlt, FaUserAlt, FaThumbsUp } from 'react-icons/fa';
+import { FaVideo, FaDownload, FaCloudUploadAlt, FaUserAlt, FaThumbsUp ,FaHistory } from 'react-icons/fa';
 
 export const features = [
   {
@@ -36,4 +36,11 @@ export const features = [
       "Like, comment, and share videos to engage with your favorite creators and the community.",
     href: "#",
   },
+  {
+    icon: FaHistory, // History icon
+    name: "Watch History & Recommendations",
+    description:
+      "Easily access your watch history and receive personalized recommendations based on your viewing habits.",
+    href: "#",
+  }
 ];

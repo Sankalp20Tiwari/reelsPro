@@ -49,7 +49,7 @@ const LoginPage = () => {
         <h1 className='text-white text-3xl md:text-6xl'>Welcome Back</h1>
         <h1 className='text-white text-3xl md:text-6xl'>Login to your account</h1>
        <form className='flex flex-col gap-4 p-4 pb-0' onSubmit={handleSubmit(onSubmit)} >
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email" className='text-white'>Email</label>
             <label className="input input-bordered flex items-center gap-2">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +67,7 @@ const LoginPage = () => {
 
 
             
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" className='text-white'>Password</label>
             <label className="input input-bordered flex items-center gap-2">
             <svg
                 xmlns="http://www.w3.org/2000/svg"

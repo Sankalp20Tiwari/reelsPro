@@ -20,12 +20,19 @@ const Header = () => {
         setIsMenuOpen(prev => !prev)
     }
 
+    // Close the menu when a button is clicked in mobile view
+    const closeMenu = () => {
+        setIsMenuOpen(false)
+    }
+
     return (
-        <header className=" text-white  shadow-md py-4 ">
+        <header className="text-white shadow-md py-4">
             <div className="container flex justify-between items-center mx-auto px-6 md:px-20">
                 {/* Logo */}
                 <Link href="/">
-                    <h1 className="text-3xl font-semibold tracking-tight hover:text-primary transition duration-300">ReelsPro</h1>
+                    <h1 className="text-3xl font-semibold tracking-tight ">Reels
+                        <span className='text-blue-700'>Pro</span>
+                    </h1>
                 </Link>
 
                 {/* Hamburger Menu Icon (Visible on small screens) */}
@@ -73,7 +80,7 @@ const Header = () => {
                     <div className="flex justify-center flex-col items-center space-y-4 text-lg">
                         {session?.user ? (
                             <button
-                                onClick={handleSignOut}
+                                onClick={() => { handleSignOut(); closeMenu(); }}
                                 className="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-red-700 transition duration-300"
                             >
                                 Sign out
@@ -81,12 +88,18 @@ const Header = () => {
                         ) : (
                             <>
                                 <Link href="/login">
-                                    <button className="bg-black text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300">
+                                    <button 
+                                        onClick={closeMenu}  // Close menu on click
+                                        className="bg-black text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300"
+                                    >
                                         Login
                                     </button>
                                 </Link>
                                 <Link href="/register">
-                                    <button className="bg-white text-black py-2 px-6 rounded-md hover:bg-gray-700 transition duration-300">
+                                    <button 
+                                        onClick={closeMenu}  // Close menu on click
+                                        className="bg-white text-black py-2 px-6 rounded-md hover:bg-gray-700 transition duration-300"
+                                    >
                                         Register
                                     </button>
                                 </Link>
@@ -100,4 +113,3 @@ const Header = () => {
 }
 
 export default Header
-

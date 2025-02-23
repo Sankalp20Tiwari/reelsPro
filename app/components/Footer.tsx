@@ -8,7 +8,9 @@ const Footer = () => {
         {/* Footer Top Section */}
         <div className="grid md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-2xl font-semibold mb-4">ReelsPro</h3>
+          <h1 className="text-3xl  font-semibold tracking-tight hover:text-primary transition duration-300">Reels
+                        <span className='text-blue-700'>Pro</span>
+                    </h1>
             <p className="text-gray-400 text-lg">
               Your go-to platform for top-tier video content and seamless sharing experience.
             </p>
@@ -45,7 +47,7 @@ const Footer = () => {
 
         {/* Footer Bottom Section */}
         <div className="mt-8 border-t border-gray-700 pt-4 text-center text-sm">
-          <p>© 2025 ReelsPro. All rights reserved.</p>
+          <p>© 2025 Reels<span className='text-blue-700'>Pro</span>. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -40,9 +40,11 @@ const RegisterPage = () => {
   return (
     <div className='flex flex-col gap-4 min-h-screen items-center justify-center'>
         <h1 className='text-white text-3xl md:text-6xl'>Join Us</h1>
-        <h1 className='text-white text-3xl md:text-6xl'>Welcome to Reels Pro</h1>
+        <h1 className="text-3xl  font-semibold text-white tracking-tight hover:text-primary transition duration-300"> Welcome to Reels
+                        <span className='text-blue-500'>Pro</span>
+        </h1>
        <form className='flex flex-col gap-4 p-4 pb-0' onSubmit={handleSubmit(onSubmit)} >
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email" className='text-white'>Email</label>
             <label className="input input-bordered flex items-center gap-2">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +62,7 @@ const RegisterPage = () => {
 
 
             
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" className='text-white'>Password</label>
             <label className="input input-bordered flex items-center gap-2">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
