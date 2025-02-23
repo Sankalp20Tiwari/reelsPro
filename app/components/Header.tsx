@@ -1,5 +1,5 @@
 "use client"
-import { Key, LayoutDashboard, Lock, LockKeyhole, LogOut, Upload, User } from 'lucide-react';
+import { Key, LayoutDashboard,  LogOut, Upload, User } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React, { useState } from 'react'
