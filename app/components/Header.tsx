@@ -1,5 +1,5 @@
 "use client"
-import { LayoutDashboard, LogOut, Upload, User } from 'lucide-react';
+import { Key, LayoutDashboard, Lock, LockKeyhole, LogOut, Upload, User } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React, { useState } from 'react'
@@ -79,12 +79,12 @@ const Header = () => {
             ) : (
               <div className="flex gap-4">
                 <Link href="/login">
-                  <button className="text-white py-2 px-6 rounded-md transition duration-300">
+                  <button className="text-white border py-2 px-6 rounded-md transition duration-300">
                     Login
                   </button>
                 </Link>
                 <Link href="/register">
-                  <button className="text-white py-2 px-6 rounded-md transition duration-300">
+                  <button className="text-black bg-white border py-2 px-6 rounded-md transition duration-300">
                     Register
                   </button>
                 </Link>
@@ -135,7 +135,7 @@ const Header = () => {
               ) : (
                 <>
                   <Link href="/login">
-                    <button onClick={closeMenu} className="bg-black text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300">
+                    <button onClick={closeMenu} className="bg-black border text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300">
                       Login
                     </button>
                   </Link>

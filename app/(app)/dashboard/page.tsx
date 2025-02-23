@@ -3,8 +3,8 @@ import { SectionHeading } from '@/app/components/SectionHeading';
 import VideoRenderCard from '@/app/components/VideoRenderCard';
 import { apiClient } from '@/lib/api-client';
 import { IVideo } from '@/models/Video';
-import { Loader2 } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
+import { BarLoader } from 'react-spinners'
 
 const DashboardPage = () => {
   const [videos, setVideos] = useState<IVideo[]>([]);
@@ -28,11 +28,14 @@ const DashboardPage = () => {
     <div className='max-w-7xl mx-auto pt-20 px-4 '>
       <div className='flex flex-col gap-4 items-center justify-center'>
       <SectionHeading heading="All Videos" />
-      <p className='text-white hidden md:block'>"Discover new content, explore diverse genres, and enjoy a community-driven platform for sharing and viewing videos."</p>
+      <p className='text-white hidden md:block'>Discover new content, explore diverse genres, and enjoy a community-driven platform for sharing and viewing videos.</p>
       </div>
       {
         loading ? (
-          <Loader2 className='animate-spin' />
+          <div className='mt-12'>
+            <BarLoader width={"100%"} color="#36d7b7" />
+
+          </div>
         ) : (
             <>
               {

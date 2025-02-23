@@ -2,10 +2,6 @@ import React from 'react'
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
   } from "@/components/ui/card"
 import { IVideo } from '@/models/Video'
 import { IKVideo } from "imagekitio-next";

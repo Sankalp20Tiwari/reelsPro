@@ -7,6 +7,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import Link from "next/link";
 import { faqData } from "@/data/faqData";
 import { features } from "@/data/features";
+import Image from "next/image";
 
 const firstRow = reviews.slice(0, reviews.length / 2);
 const secondRow = reviews.slice(reviews.length / 2);
@@ -101,7 +102,7 @@ export default function LandingPage() {
           <p className="text-lg mt-4">Learn more about who we are and what drives us.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center justify-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center justify-space-between">
           {/* Left Column (Text) */}
           <div>
             <h3 className="text-2xl font-semibold mb-4">Our Mission</h3>
@@ -115,11 +116,13 @@ export default function LandingPage() {
           </div>
 
           {/* Right Column (Image) */}
-          <div className="relative justify-end">
-            <img 
+          <div className="relative justify-end ml-20">
+            <Image
               src="https://images.pexels.com/photos/5596976/pexels-photo-5596976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
               alt="About Us" 
-              className="rounded-xl shadow-lg w-full h-full md:h-[400px] object-cover md:object-contain"
+              width={800}
+              height={500}
+              className="rounded-xl shadow-lg w-full h-full md:h-[400px]  object-cover md:object-contain"
             />
           </div>
         </div>
