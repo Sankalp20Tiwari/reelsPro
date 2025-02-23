@@ -4,7 +4,7 @@ import "./globals.css";
 import Providers from "./components/Providers";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Head from "next/head";
+
 
 
 const geistSans = Geist({
@@ -29,10 +29,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        {/* Favicon link */}
-        <link rel="icon" href="/faviconimg.jpeg" type="image/jpeg" />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
