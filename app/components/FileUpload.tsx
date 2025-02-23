@@ -18,6 +18,7 @@ export default function FileUpload({onSuccess,onProgress,fileType ="image"} : Fi
     const [uploading,setUploading] = useState(false)
     const [error,setError] = useState<string | null>(null)
 
+
   const onError = (err: {message:string}) => {
     console.log("Error", err);
     setError(err.message)
@@ -68,7 +69,7 @@ export default function FileUpload({onSuccess,onProgress,fileType ="image"} : Fi
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 ">
         <IKUpload
           fileName={fileType === "video" ? "video" : "image"}
           useUniqueFileName={true}
@@ -79,6 +80,7 @@ export default function FileUpload({onSuccess,onProgress,fileType ="image"} : Fi
           onUploadStart={handleStartUpload}
           folder={fileType === "video" ? "/videos" : "/images"}
           accept={fileType === "video" ? "video/*" : "image/*"}
+          className="cursor-pointer bg-black dark:bg-white text-white dark:text-black" 
         />
         {
             uploading && (
