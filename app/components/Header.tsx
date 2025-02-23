@@ -1,8 +1,9 @@
 "use client"
+import { User } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { FaBars, FaTimes, FaUserAlt } from 'react-icons/fa'; // Hamburger and close icons
+import { FaBars, FaTimes, FaUpload } from 'react-icons/fa'; // Hamburger and close icons
 
 const Header = () => {
     const { data: session } = useSession()
@@ -46,13 +47,25 @@ const Header = () => {
                 <div className="hidden md:flex items-center space-x-4">
                     {session?.user ? (
                         <div className="flex items-center space-x-4">
-                            <span className="text-lg">{session.user.name}</span>
+                            <div className='flex flex-row justify-center items-center space-x-2'>
+
+                              <User className="w-5 h-5" />
+                            <span className="text-lg text-white">{session.user?.email?.split("@")[0]}</span>
+                            </div>
+                            <div  className='flex flex-row justify-centeritems-center space-x-2'>
+                            <FaUpload size={20} className="text-white hover:text-blue-600  transition duration-300" />
+                            <Link href="/upload">   
+                              Upload Video
+                            </Link>
+                            </div>
+                            
                             <button
                                 onClick={handleSignOut}
                                 className="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition duration-300"
                             >
                                 Sign out
                             </button>
+
                         </div>
                     ) : (
                         <div className="flex gap-4">
@@ -77,14 +90,28 @@ const Header = () => {
                             <FaTimes size={30} className="text-white" />
                         </button>
                     </div>
-                    <div className="flex justify-center flex-col items-center space-y-4 text-lg">
+                    <div className="flex flex-col justify-center  items-center space-y-4 text-lg">
                         {session?.user ? (
-                            <button
-                                onClick={() => { handleSignOut(); closeMenu(); }}
-                                className="bg-red-600 text-white py-2 px-6 rounded-md hover:bg-red-700 transition duration-300"
-                            >
-                                Sign out
-                            </button>
+                        <div className="flex flex-col items-center space-y-4">
+                            <div className='flex flex-row items-center justify-center space-x-2'>
+                            <User className="w-5 h-5"  />
+                            <span className="text-lg text-white"> {session.user?.email?.split("@")[0]}</span>
+                            </div>
+                           
+                            <div  className='flex flex-row justify-centeritems-center space-x-2'>
+                            <FaUpload size={20} className="text-white hover:text-blue-600  transition duration-300" />
+                            <Link href="/upload">   
+                              Upload Video
+                            </Link>
+                            </div>
+                        <button
+                            onClick={handleSignOut}
+                            className="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition duration-300"
+                        >
+                            Sign out
+                        </button>
+
+                    </div>
                         ) : (
                             <>
                                 <Link href="/login">

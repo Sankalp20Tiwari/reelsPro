@@ -1,36 +1,18 @@
 "use client";
 
-import { apiClient } from "@/lib/api-client";
-import { IVideo } from "@/models/Video";
-import { useEffect, useState } from "react";
 import { ReviewCard } from "./components/ReviewCard";
 import { reviews } from "@/data/reviews";
 import { Marquee } from "@/components/magicui/marquee";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"; // Make sure you have these components
 import Link from "next/link";
 import { faqData } from "@/data/faqData";
-import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 import { features } from "@/data/features";
-import { AuroraText } from "@/components/magicui/aurora-text";
 
 const firstRow = reviews.slice(0, reviews.length / 2);
 const secondRow = reviews.slice(reviews.length / 2);
 
-export default function Home() {
-  const [videos, setVideos] = useState<IVideo[]>([]);
-
-  useEffect(() => {
-    const fetchVideos = async () => {
-      try {
-        const data = await apiClient.getVideos();
-        setVideos(data);
-      } catch (error) {
-        console.error("Error fetching videos:", error);
-      }
-    };
-
-    fetchVideos();
-  }, []);
+export default function LandingPage() {
+ 
 
   return (
     <div className="font-sans antialiased bg-black dark:bg-gray-900">
