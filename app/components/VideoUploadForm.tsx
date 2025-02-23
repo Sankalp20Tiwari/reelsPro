@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { IKUploadResponse } from "imagekitio-next/dist/types/components/IKUpload/props";
 import { Loader2 } from "lucide-react";
 import { apiClient } from "@/lib/api-client";
 import FileUpload from "./FileUpload";
+import { useRouter } from "next/navigation";
+
 
 interface VideoFormData {
   title: string;
@@ -17,7 +19,8 @@ interface VideoFormData {
 export default function VideoUploadForm() {
   const [loading, setLoading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
-
+  const fileInputRef = useRef<HTMLInputElement | null>(null); // Reference for file input
+  const router = useRouter();
 
   const {
     register,
@@ -36,7 +39,7 @@ export default function VideoUploadForm() {
   const handleUploadSuccess = (response: IKUploadResponse) => {
     setValue("videoUrl", response.filePath);
     setValue("thumbnailUrl", response.thumbnailUrl || response.filePath);
-
+    console.log(response);
   };
 
   const handleUploadProgress = (progress: number) => {
@@ -44,6 +47,7 @@ export default function VideoUploadForm() {
   };
 
   const onSubmit = async (data: VideoFormData) => {
+    console.log(data);
     if (!data.videoUrl) {
       console.error("Video URL is required");
       return;
@@ -60,6 +64,12 @@ export default function VideoUploadForm() {
       setValue("videoUrl", "");
       setValue("thumbnailUrl", "");
       setUploadProgress(0);
+      router.push("/dashboard");
+
+      // Clear file input using ref
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ""; // Reset file input value
+      }
     } catch (error) {
       console.error("Error creating video:", error);
     } finally {
@@ -79,9 +89,7 @@ export default function VideoUploadForm() {
           {...register("title", { required: "Title is required" })}
         />
         {errors.title && (
-          <span className="text-error text-sm mt-1">
-            {errors.title.message}
-          </span>
+          <span className="text-error text-sm mt-1">{errors.title.message}</span>
         )}
       </div>
 
@@ -94,45 +102,42 @@ export default function VideoUploadForm() {
           {...register("description", { required: "Description is required" })}
         />
         {errors.description && (
-          <span className="text-error text-sm mt-1">
-            {errors.description.message}
-          </span>
+          <span className="text-error text-sm mt-1">{errors.description.message}</span>
         )}
       </div>
 
       <div className="form-control">
-        <label className="label text-white ">Upload Video</label>
+        <label className="label text-white">Upload Video</label>
         <FileUpload
           fileType="video"
           onSuccess={handleUploadSuccess}
           onProgress={handleUploadProgress}
+          ref={fileInputRef} // Pass ref to FileUpload component
         />
         {uploadProgress > 0 && (
-          <div className="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+          <div>
             <div
-              className="bg-primary h-2.5 rounded-full transition-all duration-300"
+              className="bg-white mt-4 h-2.5 rounded-full transition-all duration-300"
               style={{ width: `${uploadProgress}%` }}
             />
+            <span className="text-white">{uploadProgress}%</span>
           </div>
         )}
       </div>
-      <div className=" flex items-center justify-center mx-auto">
-      <button
-        type="submit"
-        className="btn bg-blue-700 w-[140px]  text-white "
-        // disabled={loading || !uploadProgress}
-      >
-        {loading ? (
-          <>
-            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-            Publishing Video...
-          </>
-        ) : (
-          "Publish Video"
-        )}
-      </button>
+
+      <div className="flex items-center justify-center mx-auto">
+        <button type="submit" className="btn bg-blue-700 w-[140px] text-white">
+          {loading ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              Publishing Video...
+            </>
+          ) : (
+            "Publish Video"
+          )}
+        </button>
       </div>
-      
     </form>
   );
 }
+
