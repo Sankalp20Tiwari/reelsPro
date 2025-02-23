@@ -45,7 +45,7 @@ const LoginPage = () => {
     
 
   return (
-    <div className='flex flex-col gap-4 min-h-screen items-center justify-center'>
+    <div className='flex flex-col gap-4 min-h-screen max-w-7xl mx-auto px-4 pt-20 items-center justify-center'>
         <h1 className='text-white text-3xl md:text-6xl'>Welcome Back</h1>
         <h1 className='text-white text-3xl md:text-6xl'>Login to your account</h1>
        <form className='flex flex-col gap-4 p-4 pb-0' onSubmit={handleSubmit(onSubmit)} >
