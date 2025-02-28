@@ -8,7 +8,7 @@ const Footer = () => {
         {/* Footer Top Section */}
         <div className="grid md:grid-cols-3 gap-8">
           <div>
-          <h1 className="text-3xl  font-semibold tracking-tight hover:text-primary transition duration-300">Reels
+          <h1 className="text-3xl  font-semibold tracking-tight ">Reels
                         <span className='text-blue-700'>Pro</span>
                     </h1>
             <p className="text-gray-400 text-lg">

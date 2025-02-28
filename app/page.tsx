@@ -20,7 +20,7 @@ export default function LandingPage() {
 
     {/* Hero Section with Full-Width Background Image */}
     <section 
-      className="relative   bg-no-repeat bg-center pt-20  px-6 md:px-20 h-screen items-center justify-center" 
+      className="relative bg-no-repeat bg-center pt-20  px-6 md:px-20 items-center justify-center" 
       style={{ backgroundImage: "url('https://images.pexels.com/photos/1595232/pexels-photo-1595232.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')" }}
     >
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60 backdrop-blur-md"></div> {/* Gradient + Blur Effect */}
@@ -96,13 +96,13 @@ export default function LandingPage() {
       </section>
 
       {/* About Us Section */}
-      <section className="py-16  bg-black text-white">
+      <section className="py-16 sm:px-20 bg-black text-white">
         <div className="container text-center mb-12">
           <h2 className="text-4xl font-bold">About Us</h2>
           <p className="text-lg mt-4">Learn more about who we are and what drives us.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center justify-space-between">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center justify-center">
           {/* Left Column (Text) */}
           <div>
             <h3 className="text-2xl font-semibold mb-4">Our Mission</h3>
@@ -116,7 +116,7 @@ export default function LandingPage() {
           </div>
 
           {/* Right Column (Image) */}
-          <div className="relative justify-end ml-20">
+          <div className="relative justify-end mx-6">
             <Image
               src="https://images.pexels.com/photos/5596976/pexels-photo-5596976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
               alt="About Us" 
@@ -129,7 +129,7 @@ export default function LandingPage() {
       </section>
 
       {/* FAQ Section with Accordion */}
-      <section className="py-16  bg-black text-white">
+      <section className="py-16 sm:px-20 bg-black text-white">
         <div className="container text-center py-12">
           <h2 className="text-4xl font-bold mb-8 dark:text-white">Frequently Asked Questions</h2>
           <Accordion type="multiple">
