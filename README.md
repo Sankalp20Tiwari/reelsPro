@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ReelsPro
 
-## Getting Started
+## 📌 Project Overview
 
-First, run the development server:
+🎬 About ReelsPro
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+ReelsPro is a dynamic web application that allows users to upload, view, and interact with short video reels shared by other users. The platform is designed to create an engaging experience where creativity thrives, fostering a community-driven environment for content creators and viewers alike.
+
+## 🖼️  Preview
+
+![ReelsPro Landing Page](public/landing-page.png)
+
+## 🚀 Features
+
+- **User-friendly interface** for seamless feedback submission
+- **Upload and rendering videos** using Imagekit 
+- **Authentication system** using NextAuth
+- **Mobile-responsive design** ensuring accessibility across devices
+- **Optimized performance** with server-side rendering (SSR) and static site generation (SSG)
+- **Modern UI** powered by Tailwind CSS and Shadcn, magicui
+- **Secure API interactions** for data integrity
+
+## 🔗 Live Demo
+
+Check out the live version of ReelsPro here: [Live Site](https://reelspro-phi.vercel.app/)
+
+## 🛠 Installation & Setup
+
+To set up and run the project locally, follow these steps:
+
+### Prerequisites
+
+Ensure you have the following installed:
+
+- **Node.js** (Latest LTS version recommended)
+- **npm** or **yarn** for package management
+- A **MongoDB database**
+
+### Steps to Run
+
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/Sankalp20Tiwari/reelsPro.git
+   ```
+2. **Navigate to the project directory:**
+   ```sh
+   cd reelsPro
+   ```
+3. **Install dependencies:**
+   ```sh
+   npm install  # or yarn install
+   ```
+4. **Configure environment variables:**
+   Create a `.env` file in the root directory and define the necessary environment variables:
+   ```sh
+   NEXTAUTH_SECRET=<your-next-auth-secret>
+   MONGODB_URI=<your-database-connection-string>
+   NEXT_PUBLIC_PUBLIC_KEY=<your-imagekit-next-api-key>
+   IMAGEKIT_PRIVATE_KEY=<your-imagekit-private-api-key>
+   NEXT_PUBLIC_URL_ENDPOINT=<your-imagekit-url-endpoint>
+   ```
+5. **Run the development server:**
+   ```sh
+   npm run dev  # or yarn dev
+   ```
+6. Open `http://localhost:3000` in your browser to view the application.
+
+## 🔧 Configuration
+
+The application uses environment variables to manage API endpoints and database connections. Update the `.env` file accordingly to ensure smooth functionality.
+
+## 📂 Project Structure
+
+```
+reelsPro/               
+   ├──app/             
+       ├──(app)/       # Pages of application
+       ├──(auth)/      # Auth related pages
+       ├──(api)/       # Auth and other APIs
+       ├──components/  # Reusable custom made components
+       ├──layout.tsx   # Layout page
+       ├──page.tsx     # Actual Landing Page
+   ├──components/      # Reusable UI components from shadcn and magicui
+   ├──data/            # Data used at various places
+   ├──lib              # Utilities
+   ├──models            # Models            
+   ├── public/            # Static assets (images, icons, etc.)
+   ├── next.config.ts     # Next.js configuration settings
+   ├── package.json       # Project metadata and dependencies
+   ├── .env               # Environment variables (excluded from Git)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🏰 Technologies Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js** - React framework for SSR & SSG
+- **TypeScript** - Ensures type safety and scalability
+- **Imagekit** - Uploading and management of videos using imagekit
+- **MongoDB** - Database solutions for storing feedback
+- **Tailwind CSS** - Utility-first CSS framework for rapid styling
+- **ESLint & Prettier** - Code linting and formatting for better maintainability
+- **JWT Authentication** - Secure user authentication using NextAuth.js
+- **React-hook-form** - All forms are managed using React Hook Form
+- **Shadcn** - Responsive and clean UI with help of Shadcn
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## 🤝 Contributing
 
-To learn more about Next.js, take a look at the following resources:
+We welcome contributions to enhance the project! To contribute:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Fork the repository.
+2. Create a new branch (`feature/your-feature-name`).
+3. Implement your changes and commit.
+4. Push to your forked repository and submit a pull request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
