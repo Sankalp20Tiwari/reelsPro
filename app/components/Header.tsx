@@ -79,7 +79,7 @@ const Header = () => {
             ) : (
               <div className="flex gap-4">
                 <Link href="/login">
-                  <button className="text-white border py-2 px-6 rounded-md transition duration-300">
+                  <button className="bg-blue-700  py-2 px-6 rounded-md transition duration-300">
                     Login
                   </button>
                 </Link>
@@ -135,7 +135,7 @@ const Header = () => {
               ) : (
                 <>
                   <Link href="/login">
-                    <button onClick={closeMenu} className="bg-black border text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300">
+                    <button onClick={closeMenu} className="bg-blue-700  text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300">
                       Login
                     </button>
                   </Link>

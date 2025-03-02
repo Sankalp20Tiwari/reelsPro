@@ -18,7 +18,7 @@ const Footer = () => {
           
           {/* Quick Links Section */}
           <div className="flex flex-col space-y-2">
-            <h3 className="text-xl font-semibold">Quick Links</h3>
+            <h3 className="text-xl font-semibold hover:text-blue-700">Quick Links</h3>
             <a href="/about" className="text-gray-400 hover:text-white">About Us</a>
             <a href="/services" className="text-gray-400 hover:text-white">Services</a>
             <a href="/contact" className="text-gray-400 hover:text-white">Contact</a>
@@ -27,7 +27,7 @@ const Footer = () => {
 
           {/* Social Media Icons */}
           <div className="flex flex-col space-y-2">
-            <h3 className="text-xl font-semibold">Follow Us</h3>
+            <h3 className="text-xl font-semibold hover:text-blue-700">Follow Us</h3>
             <div className="flex space-x-4">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
                 <FaFacebook size={24} />

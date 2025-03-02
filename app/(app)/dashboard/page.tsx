@@ -28,7 +28,7 @@ const DashboardPage = () => {
     <div className='max-w-7xl mx-auto pt-20 px-4 '>
       <div className='flex flex-col gap-4 items-center justify-center'>
       <SectionHeading heading="All Videos" />
-      <p className='text-white hidden md:block'>Discover new content, explore diverse genres, and enjoy a community-driven platform for sharing and viewing videos.</p>
+      <p className='text-white text-2xl hidden max-w-2xl md:block'>Discover new content, explore diverse genres, and enjoy a community-driven platform for sharing and viewing videos.</p>
       </div>
       {
         loading ? (

@@ -27,6 +27,13 @@ main {
   background: black;
 }
 
+.gradient-text {
+  background: linear-gradient(to right, #BFDBFE, #1E3A8A); /* blue-200 to blue-700 */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 
 
 @layer base {
