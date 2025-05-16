@@ -1,95 +1,263 @@
-"use client"
+'use client'
 
-import React from 'react'
-import axios from 'axios'
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
+
+import { Mail, Lock, UserPlus, AlertCircle, User } from 'lucide-react';
+import VideoBackground from '@/app/components/VideoBackground';
+import AnimatedInput from '@/app/components/AnimatedInput';
 import Link from 'next/link';
 
 
-
 const schema = z.object({
-    email: z.string().email(),
-    password: z.string().min(8, {message: "Password must be at least 8 characters long"}),
-})
+  username: z.string().min(3, { message: "Username must be at least 3 characters long" }),
+  email: z.string().email({ message: "Please enter a valid email address" }),
+  password: z.string().min(8, { message: "Password must be at least 8 characters long" }),
+  confirmPassword: z.string().min(8, { message: "Password must be at least 8 characters long" }),
+}).refine(data => data.password === data.confirmPassword, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"],
+});
+
+type FormData = z.infer<typeof schema>;
 
 const RegisterPage = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+    resolver: zodResolver(schema),
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
 
-    const { register, handleSubmit,  formState: { errors } } = useForm({
-        resolver: zodResolver(schema),
-    });
-
-    const router = useRouter()
-
-    const onSubmit = async (data : z.infer<typeof schema>) => {
-        try {
-          const response =  await axios.post("/api/auth/register", data)
-          router.push("/login")
-
-          console.log(response.data)
-          
-        } catch (error) {
-            console.log(error)
-    }  
-    } 
-
-    
+  const onSubmit = async (data: FormData) => {
+    try {
+      setIsLoading(true);
+      setAuthError(null);
+      
+      // Simulate registration request
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      console.log("Registration successful", data);
+      // Would typically redirect to login page or dashboard
+    } catch (error: any) {
+      setAuthError(error.response?.data?.message || "Registration failed. Please try again.");
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <div className='flex flex-col gap-4 min-h-screen max-w-7xl mx-auto px-4 pt-20 items-center justify-center'>
-        <h1 className='bg-gradient-to-r from-blue-200 to-blue-700 bg-clip-text text-transparent text-3xl md:text-6xl'>Join Us</h1>
-        <h1 className="text-3xl  font-semibold bg-gradient-to-r from-blue-200 to-blue-700 bg-clip-text text-transparent tracking-tight "> Welcome to <span className='text-white'>Reels</span>
-                        <span className='text-blue-700'>Pro</span>
-        </h1>
-       <form className='flex flex-col gap-4 p-4 pb-0' onSubmit={handleSubmit(onSubmit)} >
-            <label htmlFor="email" className='text-white'>Email</label>
-            <label className="input input-bordered flex items-center gap-2">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                className="h-4 w-4 opacity-70 text-blue-700">
-                <path
-                d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
-                <path
-                d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
-            </svg>
-            <input type="text" className="grow text-white"  {...register("email")}/>
-            </label>
-            {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
-
-
+    <div className="min-h-screen flex">
+      {/* Left side - Animation/Video */}
+      <div className="hidden md:flex md:w-1/2 relative overflow-hidden">
+        <VideoBackground 
+          videoUrl="https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          overlayClassName="bg-gradient-to-r from-black/90 via-black/80 to-transparent"
+        />
+        
+        <div className="relative z-10 flex flex-col justify-center items-start p-12 text-white ml-16">
+          <h1 className="text-5xl font-bold mb-6 animate-fadeIn">
+            Join the <span className="text-reelspro-purple">Creator</span> Community
+          </h1>
+          
+          <div className="space-y-6">
+            <p className="text-2xl text-gray-300 animate-slideUp animation-delay-200">
+              Start your creative journey today
+            </p>
             
-            <label htmlFor="password" className='text-white'>Password</label>
-            <label className="input input-bordered flex items-center gap-2">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                className="h-4 w-4 opacity-70 text-blue-700">
-                <path
-                fillRule="evenodd"
-                d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
-                clipRule="evenodd" />
-            </svg>
-            <input 
-                type="password"
-                className="grow text-white"
-                {...register("password")} />
+            <ul className="space-y-4 max-w-md animate-slideUp animation-delay-400">
+              {[
+                "Upload unlimited HD videos",
+                "Connect with other creators worldwide",
+                "Get discovered by our recommendation system",
+                "Analytics to grow your audience"
+              ].map((benefit, index) => (
+                <li 
+                  key={index} 
+                  className="flex items-center"
+                  style={{
+                    animationDelay: `${(index * 200) + 600}ms`
+                  }}
+                >
+                  <svg className="h-5 w-5 text-reelspro-blue mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-300">{benefit}</span>
+                </li>
+              ))}
+            </ul>
+            
+            <div className="flex items-center space-x-2 mt-8">
+            {[
+              'men/32.jpg',
+              'women/44.jpg',
+              'men/54.jpg',
+              'women/65.jpg'
+            ].map((img, idx) => (
+              <img
+                key={idx}
+                src={`https://randomuser.me/api/portraits/${img}`}
+                alt="Creator"
+                className="w-10 h-10 rounded-full object-cover border-2 border-white transform hover:scale-110 transition-transform duration-300 shadow-md"
+              />
+            ))}
+
+            <span className="ml-2 text-sm text-gray-300">and many more</span>
+          </div>
+          </div>
+        </div>
+        
+        {/* Animated gradient circles */}
+        <div className="absolute -top-20 -left-20 w-80 h-80 bg-reelspro-purple opacity-30 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-20 right-0 w-60 h-60 bg-reelspro-blue opacity-20 rounded-full blur-3xl animate-pulse animation-delay-1000"></div>
+      </div>
+      
+      {/* Right side - Registration form */}
+      <div className="w-full md:w-1/2 flex items-center justify-center relative bg-black">
+        <div className="w-full max-w-md p-8">
+          <div className="text-center mb-8">
+            <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-reelspro-blue to-reelspro-purple bg-clip-text text-transparent">
+              Create Account
+            </h2>
+            <p className="text-gray-300">Create an account to get started</p>
+          </div>
+          
+          {authError && (
+            <div className="bg-red-500/10 border border-red-500/30 rounded-md p-3 mb-6 flex items-center">
+              <AlertCircle className="h-5 w-5 text-red-500 mr-2 flex-shrink-0" />
+              <p className="text-red-500 text-sm">{authError}</p>
+            </div>
+          )}
+          
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <AnimatedInput
+              id="username"
+              label="Username"
+              icon={User}
+              type="text"
+              error={errors.username?.message}
+              {...register("username")}
+            />
+            
+            <AnimatedInput
+              id="email"
+              label="Email"
+              icon={Mail}
+              type="email"
+              error={errors.email?.message}
+              {...register("email")}
+            />
+            
+            <AnimatedInput
+              id="password"
+              label="Password"
+              icon={Lock}
+              type="password"
+              error={errors.password?.message}
+              {...register("password")}
+            />
+            
+            <AnimatedInput
+              id="confirmPassword"
+              label="Confirm Password"
+              icon={Lock}
+              type="password"
+              error={errors.confirmPassword?.message}
+              {...register("confirmPassword")}
+              className="mb-6"
+            />
+            
+            <label className="flex items-start mb-6">
+              <input
+                type="checkbox"
+                className="mt-1 w-4 h-4 rounded border-white/20 bg-transparent focus:ring-reelspro-blue text-reelspro-blue"
+              />
+              <span className="ml-3 text-sm text-gray-300">
+                I agree to the{" "}
+                <Link href="/terms" className="text-reelspro-blue hover:underline">
+                  Terms of Service
+                </Link>{" "}
+                and{" "}
+                <Link href="/privacy" className="text-reelspro-blue hover:underline">
+                  Privacy Policy
+                </Link>
+              </span>
             </label>
-
-            {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
-
-            <button type='submit' className='btn btn-active'>Register</button>
-       </form>
-       <div className='flex gap-2'>
-         < p className='text-white'> Already have an account?</p>
-         <Link href="/login"  className='text-blue-700'>Login</Link>
-       </div>
+            
+            <button
+              type="submit"
+              disabled={isLoading}
+              className={`w-full py-3 px-4 bg-gradient-to-r from-reelspro-blue to-reelspro-purple rounded-md flex items-center justify-center text-white font-medium transition-all duration-300 ${
+                isLoading ? 'opacity-70 cursor-not-allowed' : 'hover:shadow-lg hover:shadow-reelspro-blue/30'
+              }`}
+            >
+              {isLoading ? (
+                <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+              ) : (
+                <UserPlus className="h-5 w-5 mr-2" />
+              )}
+              {isLoading ? 'Creating account...' : 'Create Account'}
+            </button>
+          </form>
+          
+          {/* <div className="mt-6">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-white/10"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-black text-gray-400">Or sign up with</span>
+              </div>
+            </div>
+            
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                className="flex items-center justify-center py-2 px-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-md transition-colors"
+              >
+                <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24">
+                  <g transform="matrix(1, 0, 0, 1, 27.009001, -39.238998)">
+                    <path fill="#4285F4" d="M -3.264 51.509 C -3.264 50.719 -3.334 49.969 -3.454 49.239 L -14.754 49.239 L -14.754 53.749 L -8.284 53.749 C -8.574 55.229 -9.424 56.479 -10.684 57.329 L -10.684 60.329 L -6.824 60.329 C -4.564 58.239 -3.264 55.159 -3.264 51.509 Z"/>
+                    <path fill="#34A853" d="M -14.754 63.239 C -11.514 63.239 -8.804 62.159 -6.824 60.329 L -10.684 57.329 C -11.764 58.049 -13.134 58.489 -14.754 58.489 C -17.884 58.489 -20.534 56.379 -21.484 53.529 L -25.464 53.529 L -25.464 56.619 C -23.494 60.539 -19.444 63.239 -14.754 63.239 Z"/>
+                    <path fill="#FBBC05" d="M -21.484 53.529 C -21.734 52.809 -21.864 52.039 -21.864 51.239 C -21.864 50.439 -21.724 49.669 -21.484 48.949 L -21.484 45.859 L -25.464 45.859 C -26.284 47.479 -26.754 49.299 -26.754 51.239 C -26.754 53.179 -26.284 54.999 -25.464 56.619 L -21.484 53.529 Z"/>
+                    <path fill="#EA4335" d="M -14.754 43.989 C -12.984 43.989 -11.404 44.599 -10.154 45.789 L -6.734 42.369 C -8.804 40.429 -11.514 39.239 -14.754 39.239 C -19.444 39.239 -23.494 41.939 -25.464 45.859 L -21.484 48.949 C -20.534 46.099 -17.884 43.989 -14.754 43.989 Z"/>
+                  </g>
+                </svg>
+                Google
+              </button>
+              
+              <button
+                type="button"
+                className="flex items-center justify-center py-2 px-4 bg-[#1877F2]/10 hover:bg-[#1877F2]/20 border border-[#1877F2]/30 rounded-md transition-colors"
+              >
+                <svg className="h-5 w-5 mr-2 text-[#1877F2]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9.14634 24V13.0614H5.83302V8.84553H9.14634V5.7422C9.14634 2.55307 11.0991 0 15.2338 0C16.765 0 17.7676 0.12738 18.1165 0.184903V3.91493L16.016 3.91583C14.3652 3.91583 13.7605 4.73036 13.7605 6.07246V8.84553H18.7519L17.4205 13.0614H13.7605V24"></path>
+                </svg>
+                Facebook
+              </button>
+            </div>
+          </div> */}
+          
+          <div className="text-center mt-6">
+            <p className="text-gray-400 text-sm">
+              Already have an account?{" "}
+              <Link href="/login" className="text-reelspro-blue hover:underline font-medium">
+                Sign in
+              </Link>
+            </p>
+          </div>
+        </div>
+        
+        {/* Mobile background */}
+        <div className="absolute -z-10 inset-0 md:hidden overflow-hidden">
+          <div className="absolute -top-10 -right-10 w-40 h-40 bg-reelspro-purple opacity-20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-reelspro-blue opacity-20 rounded-full blur-3xl"></div>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default RegisterPage
+export default RegisterPage;
