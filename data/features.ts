@@ -119,5 +119,17 @@ export const features = [
     backgroundColor: "from-blue-600/20 to-violet-600/20",
     highlight: "Collaboration Tools",
     size: "large" // new size property
+  },
+  {
+    id: 10,
+    title: "Verified Achievements",
+    description: "Showcase badges and milestones earned through your content creation journey and community contributions.",
+    icon: Award,
+    animation: "fade-in-up",
+    delay: "1000",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=500&h=350",
+    backgroundColor: "from-yellow-600/20 to-orange-500/20",
+    highlight: "Badge System",
+    size: "small"
   }
 ];
