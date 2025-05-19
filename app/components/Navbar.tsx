@@ -2,9 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
-import { LayoutDashboard, LogOut, Upload, User, Menu, X, Video } from 'lucide-react';
+import { LayoutDashboard, LogOut, Upload, User, Menu, X, Video, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { usePathname } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
+
 
 const NavBar = () => {
   const { data: session } = useSession();
@@ -12,6 +14,8 @@ const NavBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathName = usePathname();
   const isAuthPage = pathName === '/login' || pathName === '/register';
+  const isAppPage= pathName === '/dashboard' || pathName === '/upload';
+  const { toast } = useToast();
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 10);
@@ -22,8 +26,18 @@ const NavBar = () => {
   const handleSignOut = async () => {
     try {
       await signOut();
+      toast({
+        title: 'Logged out successfully',
+        description: 'You have been logged out.',
+        variant: 'success',
+      })
     } catch (error) {
       console.error(error);
+      toast({
+        title: 'Error',
+        description: 'Failed to log out. Please try again.',
+        variant: 'destructive',
+      });
     }
   };
 
@@ -31,7 +45,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-md transition-all duration-300 ${
         isScrolled ? 'shadow-lg' : 'shadow-none'
       }`}
       style={{ position: 'fixed' }}
@@ -39,7 +53,7 @@ const NavBar = () => {
       <div className="container mx-auto flex justify-between items-center px-4 py-4 relative">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 text-white">
-          <Video className="h-8 w-8 text-reelspro-cyan" />
+          <Play className="h-6 w-6 text-reelspro-blue mr-2" fill="#4CC9F0" />
           <span className="text-xl font-bold">
             Reels<span className="text-reelspro-cyan">Pro</span>
           </span>
@@ -47,7 +61,7 @@ const NavBar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8 text-white/80">
-          {!isAuthPage && (
+          {!isAuthPage && !isAppPage && (
             <>
               <Link href="#features" className="hover:text-reelspro-blue transition-colors">
                 Features
@@ -125,12 +139,12 @@ const NavBar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden bg-black/95 backdrop-blur-md shadow-lg border-t border-white/10 absolute left-0 right-0 overflow-hidden transition-max-height duration-300 ease-in-out ${
+        className={`md:hidden bg-black backdrop-blur-xl shadow-lg border-t border-white/10 absolute left-0 right-0 overflow-hidden transition-max-height duration-300 ease-in-out ${
           isMobileMenuOpen ? 'max-h-screen p-4' : 'max-h-0 p-0'
         }`}
-        style={{ top: '64px', zIndex: 40 }}
+        style={{ top: '60px', zIndex: 40 }}
       >
-        {!isAuthPage && (
+        {!isAuthPage && !isAppPage && (
           <>
             <Link
               href="#features"
@@ -197,18 +211,19 @@ const NavBar = () => {
               </div>
             </Button>
           ) : (
-            <>
+
+            <div className='flex gap-2'>
               <Link href="/login" onClick={closeMobileMenu}>
-                <Button variant="outline" className="w-full border-reelspro-blue text-reelspro-blue">
+                <Button  className="text-white bg-gradient-to-r from-reelspro-blue/70 to-reelspro-blue/40">
                   Login
                 </Button>
               </Link>
               <Link href="/register" onClick={closeMobileMenu}>
-                <Button className="w-full bg-gradient-to-r from-reelspro-purple to-reelspro-blue">
+                <Button className="bg-gradient-to-r from-reelspro-pink/50 to-reelspro-purple/40 hover:opacity-90">
                   Sign Up
                 </Button>
               </Link>
-            </>
+            </div>
           )}
         </div>
       </div>
