@@ -15,7 +15,9 @@ export interface IVideo{
         height: number,
         width: number,
         quality?: number
-    }
+    },
+    category?: string,
+    tags?: string[],
     createdAt?: Date,
     updatedAt?: Date
 }
@@ -58,7 +60,15 @@ const videoSchema = new Schema<IVideo>(
             min: 1,
             max:100
         }
-    }
+    },
+    category: {
+        type: String,
+    },
+    tags: {
+        type: [String],
+        default: []
+    },
+
 },
 {
     timestamps:true
