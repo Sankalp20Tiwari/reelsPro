@@ -10,18 +10,13 @@ import { useToast } from '@/hooks/use-toast';
 
 const NavBar = () => {
   const { data: session } = useSession();
-  const [isScrolled, setIsScrolled] = useState(false);
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathName = usePathname();
   const isAuthPage = pathName === '/login' || pathName === '/register';
   const isAppPage= pathName === '/dashboard' || pathName === '/upload';
   const { toast } = useToast();
 
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   const handleSignOut = async () => {
     try {
@@ -31,6 +26,7 @@ const NavBar = () => {
         description: 'You have been logged out.',
         variant: 'success',
       })
+      
     } catch (error) {
       console.error(error);
       toast({
@@ -45,9 +41,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-md transition-all duration-300 ${
-        isScrolled ? 'shadow-lg' : 'shadow-none'
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 bg-transparent backdrop-blur-md transition-all duration-300 shadow-lg"
       style={{ position: 'fixed' }}
     >
       <div className="container mx-auto flex justify-between items-center px-4 py-4 relative">
@@ -102,9 +96,9 @@ const NavBar = () => {
             <>
               <div className="flex items-center space-x-2">
                 <User className="w-5 h-5" />
-                <span>{session.user.email?.split('@')[0]}</span>
+                <span className="font-semibold capitalize">{session.user.email?.split('@')[0]}</span>
               </div>
-              <Button onClick={handleSignOut} className="bg-red-600 hover:bg-red-700">
+              <Button onClick={handleSignOut} className="bg-reelspro-blue/50">
                 <div className="flex items-center space-x-2">
                   <LogOut className="w-4 h-4" /> <span>Sign Out</span>
                 </div>
@@ -139,7 +133,7 @@ const NavBar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden bg-black backdrop-blur-xl shadow-lg border-t border-white/10 absolute left-0 right-0 overflow-hidden transition-max-height duration-300 ease-in-out ${
+        className={`md:hidden bg-black/70 shadow-lg border-t border-white/10 absolute left-0 right-0 overflow-hidden transition-max-height duration-300 ease-in-out ${
           isMobileMenuOpen ? 'max-h-screen p-4' : 'max-h-0 p-0'
         }`}
         style={{ top: '60px', zIndex: 40 }}
@@ -203,7 +197,7 @@ const NavBar = () => {
                 handleSignOut();
                 closeMobileMenu();
               }}
-              className="w-full bg-red-600 hover:bg-red-700"
+              className="w-full"
             >
               <div className="flex items-center justify-center space-x-2">
                 <LogOut className="w-4 h-4" />
