@@ -4,11 +4,13 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-
+import axios from 'axios'
+import { useRouter } from 'next/navigation';
 import { Mail, Lock, UserPlus, AlertCircle, User } from 'lucide-react';
 import VideoBackground from '@/app/components/VideoBackground';
 import AnimatedInput from '@/app/components/AnimatedInput';
 import Link from 'next/link';
+import { useToast } from '@/hooks/use-toast';
 
 
 const schema = z.object({
@@ -29,20 +31,33 @@ const RegisterPage = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
+  const router = useRouter()
+   const { toast } = useToast();
 
   const onSubmit = async (data: FormData) => {
     try {
       setIsLoading(true);
       setAuthError(null);
       
-      // Simulate registration request
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      console.log("Registration successful", data);
-      // Would typically redirect to login page or dashboard
-    } catch (error: any) {
-      setAuthError(error.response?.data?.message || "Registration failed. Please try again.");
-      console.error(error);
+        const response = await axios.post('/api/auth/register', data);
+        if (response.status === 201) {
+          // Registration successful, redirect to login page
+          router.push('/login');
+          toast({
+            title: "Registration Successful",
+            description: "You have successfully registered. Please log in to continue.",
+            variant: "success",
+          });
+        } else {
+          setAuthError("Registration failed");
+        }
+
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setAuthError(error.response?.data.message || "An error occurred");
+      } else {
+        setAuthError("An unexpected error occurred");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -53,7 +68,7 @@ const RegisterPage = () => {
       {/* Left side - Animation/Video */}
       <div className="hidden md:flex md:w-1/2 relative overflow-hidden">
         <VideoBackground 
-          videoUrl="https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          videoUrl="https://videos.pexels.com/video-files/6128683/6128683-uhd_2560_1440_25fps.mp4"
           overlayClassName="bg-gradient-to-r from-black/90 via-black/80 to-transparent"
         />
         
@@ -118,7 +133,15 @@ const RegisterPage = () => {
       <div className="w-full md:w-1/2 flex items-center justify-center relative bg-black">
         <div className="w-full max-w-md p-8">
           <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold mb-2 bg-gradient-to-r from-reelspro-blue to-reelspro-purple bg-clip-text text-transparent">
+            <div className='flex flex-col md:hidden items-center justify-center mb-6 mt-6'>
+              <h1 className="text-5xl font-bold mb-6 animate-fadeIn">
+                Join the <span className="text-reelspro-purple">Creator</span> Community
+              </h1>
+              <p className="text-2xl text-gray-300 animate-slideUp animation-delay-200">
+                Start your creative journey today
+              </p>
+            </div>
+            <h2 className="hidden md:block text-4xl font-bold mb-2 bg-gradient-to-r from-reelspro-blue to-reelspro-purple bg-clip-text text-transparent">
               Create Account
             </h2>
             <p className="text-gray-300">Create an account to get started</p>
