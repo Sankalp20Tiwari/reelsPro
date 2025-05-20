@@ -38,30 +38,29 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
       setError(null);
     };
 
-    const validateFile = (file: File) => {
-      if (fileType === "video") {
-        if (!file.type.startsWith("video/")) {
-          setError("Please upload a valid video file");
-          return false;
+      const validateFile = (file: File) => {        
+        if (fileType === "video") {
+          if (!file.type.startsWith("video/")) {
+            setError("Please upload a valid video file");
+            return false;
+          }
+          if (file.size > 20 * 1024 * 1024) {
+            setError("Video size must be less than 20MB");
+            return false;
+          }
+        } else {
+          const validTypes = ["image/jpeg", "image/png", "image/webp"];
+          if (!validTypes.includes(file.type)) {
+            setError("Please upload a valid image file (JPEG, PNG, or WebP)");
+            return false;
+          }
+          if (file.size > 5 * 1024 * 1024) {
+            setError("File size must be less than 5MB");
+            return false;
+          }
         }
-        if (file.size > 100 * 1024 * 1024) {
-          setError("Video size must be less than 100MB");
-          return false;
-        }
-      } else {
-        const validTypes = ["image/jpeg", "image/png", "image/webp"];
-        if (!validTypes.includes(file.type)) {
-          setError("Please upload a valid image file (JPEG, PNG, or WebP)");
-          return false;
-        }
-        if (file.size > 5 * 1024 * 1024) {
-          setError("File size must be less than 5MB");
-          return false;
-        }
-      }
-      return true;
-    };
-
+        return true;
+      };
     return (
       <div className="space-y-2">
         <IKUpload
@@ -74,7 +73,7 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
           useUniqueFileName={true}
           validateFile={validateFile}
           folder={fileType === "video" ? "/videos" : "/images"}
-          className="cursor-pointer bg-black dark:bg-white text-white dark:text-black"
+          className="cursor-pointer bg-transparent dark:bg-white text-white dark:text-black"
           ref={ref} // Forward the ref to the underlying component
         />
         {uploading && (
@@ -83,7 +82,7 @@ const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
             <span className="text-white">Uploading...</span>
           </div>
         )}
-        {error && <div className="text-error text-sm">{error}</div>}
+        {error && <div className="text-error text-red-500 text-sm">{error}</div>}
       </div>
     );
   }
