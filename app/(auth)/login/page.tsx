@@ -8,6 +8,9 @@ import Link from 'next/link';
 import { Mail, Lock, LogIn, AlertCircle, Play } from 'lucide-react';
 import VideoBackground from '@/app/components/VideoBackground';
 import AnimatedInput from '@/app/components/AnimatedInput';
+import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
+import { useToast } from '@/hooks/use-toast';
 
 
 const schema = z.object({
@@ -21,27 +24,44 @@ const LoginPage = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
+  const router = useRouter();
+  const { toast } = useToast();
 
   const onSubmit = async (data: z.infer<typeof schema>) => {
     try {
       setIsLoading(true);
       setAuthError(null);
       
-      // Simulate auth request
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // For demo purposes - would normally be replaced with actual auth logic
-      if (data.email === "demo@example.com" && data.password === "password123") {
-        // Success - would redirect in a real app
-        console.log("Login successful");
-      } else {
-        setAuthError("Invalid email or password. Please try again.");
-      }
+      const result = await signIn("credentials", {
+          email: data.email,
+          password: data.password,
+          redirect: false
+        })
+        if(result?.error){
+          setAuthError(result.error);
+          toast({
+            title: "Login Failed",
+            description: result.error,
+            variant: "destructive",
+          });
+        }
+        if(result?.url){
+          toast({
+            title: "Login Successful",
+            description: "Welcome back!",
+            variant: "success",
+          });
+          router.push("/dashboard")
+        }
     } catch (error) {
-      setAuthError("An unexpected error occurred. Please try again.");
+      if (error instanceof Error) {
+        setAuthError(error.message);
+      } else {
+        setAuthError("An unexpected error occurred. Please try again.");
+      }
     } finally {
       setIsLoading(false);
-    }
+    }            
   };
 
   return (
@@ -49,7 +69,7 @@ const LoginPage = () => {
       {/* Left side - Animation/Video */}
       <div className="hidden md:flex md:w-1/2 relative overflow-hidden ">
         <VideoBackground 
-          videoUrl="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          videoUrl="https://videos.pexels.com/video-files/854225/854225-hd_1920_1080_30fps.mp4"
           overlayClassName="bg-gradient-to-r from-black/90 via-black/80 to-transparent"
         />
         
@@ -121,7 +141,15 @@ const LoginPage = () => {
       <div className="w-full md:w-1/2 flex items-center justify-center relative bg-black">
         <div className="w-full max-w-md p-8">
           <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold mb-2 py-2 bg-gradient-to-r from-reelspro-blue to-reelspro-purple bg-clip-text text-transparent">
+            <div className='flex flex-col md:hidden items-center justify-center mb-6 '>
+              <h1 className="text-5xl font-bold mb-6 animate-fadeIn">
+              Welcome <span className="text-reelspro-blue">Back</span>
+              </h1>
+              <p className="text-2xl text-gray-300 animate-slideUp animation-delay-200">
+                Share your story with the world
+              </p>
+            </div>
+            <h2 className="hidden md:block text-4xl font-bold mb-2 py-2 bg-gradient-to-r from-reelspro-blue to-reelspro-purple bg-clip-text text-transparent">
               Sign In
             </h2>
             <p className="text-gray-300 ">Sign in to continue your journey</p>
