@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
         port: "",
       },
     ],
-    domains: ['images.pexels.com','avatar.vercel.sh','randomuser.me'],
+    domains: ['images.pexels.com','avatar.vercel.sh','randomuser.me',"images.unsplash.com",'via.placeholder.com'],
   },
 };
 
