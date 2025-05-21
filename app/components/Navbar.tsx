@@ -1,8 +1,8 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
-import { LayoutDashboard, LogOut, Upload, User, Menu, X, Video, Play } from 'lucide-react';
+import { LayoutDashboard, LogOut, Upload, User, Menu, X,  Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { usePathname } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
