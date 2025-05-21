@@ -1,46 +1,37 @@
 export const featuredVideos = [
     {
-      title: "Cinematic Travel Moments",
-      description: "Experience breathtaking landscapes and cultural wonders around the world.",
-      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      thumbnailUrl: "https://images.unsplash.com/photo-1533105079780-92b9be482077?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
-      creator: {
-        name: "Sarah Johnson",
-        avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-        followers: "2.4M"
-      }
-    },
-    {
-      title: "Urban Photography Guide",
-      description: "Learn professional techniques to capture stunning city shots day and night.",
-      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-      thumbnailUrl: "https://images.unsplash.com/photo-1494192785370-e91e091d544f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
-      creator: {
-        name: "Michael Chen",
-        avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-        followers: "1.8M"
-      }
-    },
-    {
-      title: "Drone Masterclass: Aerial Views",
-      description: "Capture breathtaking aerial shots with any drone model using these pro techniques.",
-      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-      thumbnailUrl: "https://images.unsplash.com/photo-1534357808625-8c6eabc3be37?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
-      creator: {
-        name: "Alex Rivera",
-        avatar: "https://randomuser.me/api/portraits/men/67.jpg",
-        followers: "941K"
-      }
-    },
-    {
-      title: "Sunset Timelapse Tutorial",
-      description: "Learn how to create stunning sunset timelapses with basic camera equipment.",
-      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
-      thumbnailUrl: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
-      creator: {
-        name: "Nina Patel",
-        avatar: "https://randomuser.me/api/portraits/women/63.jpg",
-        followers: "1.2M"
-      }
-    }
+        thumbnail: 'https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        profilePic: 'https://randomuser.me/api/portraits/women/44.jpg',
+        creator: 'Sarah Johnson',
+        followers: '2.4M followers',
+        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+      },
+      {
+        thumbnail: 'https://images.unsplash.com/photo-1494192785370-e91e091d544f?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        profilePic: 'https://randomuser.me/api/portraits/men/32.jpg',
+        creator: 'Michael Chen',
+        followers: '1.8M followers',
+        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+      },
+      {
+        thumbnail: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        profilePic: 'https://randomuser.me/api/portraits/women/29.jpg',
+        creator: 'Emily Roberts',
+        followers: '3.1M followers',
+        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+      },
+      {
+        thumbnail: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        profilePic: 'https://randomuser.me/api/portraits/men/77.jpg',
+        creator: 'David Lee',
+        followers: '1.2M followers',
+        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
+      },
+      {
+        thumbnail: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+        profilePic: 'https://randomuser.me/api/portraits/women/51.jpg',
+        creator: 'Olivia Brown',
+        followers: '3.5M followers',
+        videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+      },
   ];
