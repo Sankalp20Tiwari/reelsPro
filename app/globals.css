@@ -368,3 +368,88 @@ input:-webkit-autofill {
 .max-h-app {
   max-height: calc(100vh - 4rem);
 }
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes floatingSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 0.7s ease forwards;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+.animate-fadeInUp.delay-150 {
+  animation-delay: 0.15s;
+}
+
+.animate-fadeInUp.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-zoomIn {
+  animation: zoomIn 1s ease forwards;
+}
+
+.animate-floating {
+  animation: floating 6s ease-in-out infinite;
+}
+
+.animate-floatingSlow {
+  animation: floatingSlow 8s ease-in-out infinite;
+}
+
+.animate-floating.delay-2000 {
+  animation-delay: 2s;
+}
+
+.animate-floatingSlow.delay-3000 {
+  animation-delay: 3s;
+}
