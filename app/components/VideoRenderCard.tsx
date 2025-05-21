@@ -67,7 +67,7 @@ const VideoRenderCard = ({ video }: { video: IVideo }) => {
           style={{ aspectRatio: "9/16" }}
         >
 
-          {/* Video Player */}
+     
           <IKVideo
             path={video.videoUrl}
             transformation={[{ height: "1920", width: "1080" }]}
@@ -86,11 +86,10 @@ const VideoRenderCard = ({ video }: { video: IVideo }) => {
           )}
           <Badge className="absolute top-4 right-4 z-10 text-white" />
 
-          {/* Overlay Title & Drawer */}
           {!isPlaying && (
             <div className="absolute bottom-20 left-0 right-0">
               <div className=" px-4 py-3 transition-all duration-300">
-                {/* Title + Toggle */}
+   
                 <div className="flex items-center justify-between">
                   <h2 className="text-lg text-white font-semibold capitalize line-clamp-2">
                     {video.title}
@@ -104,7 +103,7 @@ const VideoRenderCard = ({ video }: { video: IVideo }) => {
                   </button>
                 </div>
 
-                {/* Drawer Content */}
+
                 {isDrawerOpen && (
                   <div className="mt-2 space-y-2  transition-all">
                     <p className="text-sm text-white">{video.description}</p>
