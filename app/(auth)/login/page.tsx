@@ -11,6 +11,7 @@ import AnimatedInput from '@/app/components/AnimatedInput';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { useToast } from '@/hooks/use-toast';
+import Image from 'next/image';
 
 
 const schema = z.object({
@@ -121,7 +122,9 @@ const LoginPage = () => {
                       animationDelay: `${(item.id * 200) + 600}ms`
                     }}
                   >
-                    <img
+                    <Image
+                      width={300}
+                      height={300}
                       src={item.img}
                       alt={item.alt}
                       className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
@@ -254,7 +257,7 @@ const LoginPage = () => {
           
           <div className="text-center mt-6">
             <p className="text-gray-400 text-sm">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link href="/register" className="text-reelspro-blue hover:underline font-medium">
                 Sign up
               </Link>

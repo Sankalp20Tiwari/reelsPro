@@ -11,6 +11,7 @@ import VideoBackground from '@/app/components/VideoBackground';
 import AnimatedInput from '@/app/components/AnimatedInput';
 import Link from 'next/link';
 import { useToast } from '@/hooks/use-toast';
+import Image from 'next/image';
 
 
 const schema = z.object({
@@ -111,7 +112,9 @@ const RegisterPage = () => {
               'men/54.jpg',
               'women/65.jpg'
             ].map((img, idx) => (
-              <img
+              <Image
+                width={40}
+                height={40}
                 key={idx}
                 src={`https://randomuser.me/api/portraits/${img}`}
                 alt="Creator"
