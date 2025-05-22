@@ -39,7 +39,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({
       <video
         ref={videoRef}
         className={`w-full h-full object-cover scale-105 transition-opacity duration-1000 ease-in-out ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
+          isLoaded ? 'opacity-100' : 'opacity-90'
         }`}
         autoPlay
         muted
