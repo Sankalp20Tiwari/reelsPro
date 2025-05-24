@@ -8,7 +8,7 @@ ReelsPro is a dynamic web application that allows users to upload, view, and int
 
 ## 🖼️  Preview
 
-![ReelsPro Landing Page](public/landing-page.png)
+![ReelsPro Landing Page](public/landingPage.png)
 
 ## 🚀 Features
 
