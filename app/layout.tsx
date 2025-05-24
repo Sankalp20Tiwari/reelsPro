@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "./components/Providers";
-import Header from "./components/Header";
 import Footer from "./components/Footer";
+import NavBar from "./components/Navbar";
+import { Toaster } from "@/components/ui/toaster";
+import Head from 'next/head';
 
 
 
@@ -29,6 +31,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+      <link
+        rel="preload"
+        as="video"
+        href="https://videos.pexels.com/video-files/19303815/19303815-hd_1920_1080_30fps.mp4"
+        type="video/mp4"
+        crossOrigin="anonymous"
+      />
+    </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -36,8 +47,10 @@ export default function RootLayout({
         <Providers>
         
          <main className=" w-full bg-black  ">
-          <Header />
+          {/* <Header /> */}
+          <NavBar />
           {children}
+          <Toaster />
           <Footer />
           </main>
         </Providers>
