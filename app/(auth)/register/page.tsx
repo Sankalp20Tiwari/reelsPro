@@ -118,6 +118,7 @@ const RegisterPage = () => {
                 key={idx}
                 src={`https://randomuser.me/api/portraits/${img}`}
                 alt="Creator"
+                unoptimized
                 className="w-10 h-10 rounded-full object-cover border-2 border-white transform hover:scale-110 transition-transform duration-300 shadow-md"
               />
             ))}
