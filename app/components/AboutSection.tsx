@@ -105,6 +105,7 @@ const About = () => {
                         src={member.image}
                         alt={member.name}
                         className="w-24 h-24 rounded-full border-2 border-white/20 object-cover relative z-10"
+                        unoptimized
                       />
                     </div>
                     <h3 className="text-xl font-semibold">{member.name}</h3>

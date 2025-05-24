@@ -92,6 +92,7 @@ const TestimonialSlider = () => {
                         src={testimonial.avatar} 
                         alt={testimonial.name} 
                         className="w-20 h-20 rounded-full border-4 border-white/20 object-cover relative z-10"
+                        unoptimized
                       />
                     </div>
                     <div className="flex-1 text-center md:text-left">
