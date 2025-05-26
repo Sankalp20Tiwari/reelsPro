@@ -67,7 +67,7 @@ const HeroVideoCarousel = ({ videoThumbnails, openVideoModal }: HeroVideoCarouse
             onMouseLeave={() => setHoveredIndex(null)}
             onClick={() => openVideoModal(video.videoUrl)}
           >
-            <Image height={500} width={300} src={video.thumbnail} alt={video.creator} className="w-full h-full object-cover" />
+            <Image height={500} width={300} src={video.thumbnail} alt={video.creator} className="w-full h-full object-cover" unoptimized />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
 
             <div className="absolute bottom-0 left-0 right-0 p-4 flex items-center">
