@@ -67,11 +67,11 @@ const HeroVideoCarousel = ({ videoThumbnails, openVideoModal }: HeroVideoCarouse
             onMouseLeave={() => setHoveredIndex(null)}
             onClick={() => openVideoModal(video.videoUrl)}
           >
-            <Image height={500} width={300} src={video.thumbnail} alt={video.creator} className="w-full h-full object-cover" unoptimized />
+            <Image height={500} width={300} src={video.thumbnail} alt={video.creator} className="w-full h-full object-cover"  />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
 
             <div className="absolute bottom-0 left-0 right-0 p-4 flex items-center">
-              <Image height={40} width={40} src={video.profilePic} alt={video.creator} className="w-10 h-10 rounded-full border-2 border-white" />
+              <Image height={40} width={40} src={video.profilePic} alt={video.creator} className="w-10 h-10 rounded-full border-2 border-white" unoptimized />
               <div className="ml-2">
                 <p className="text-white font-medium">{video.creator}</p>
                 <p className="text-xs text-gray-300">{video.followers}</p>
