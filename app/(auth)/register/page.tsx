@@ -6,7 +6,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios'
 import { useRouter } from 'next/navigation';
-import { Mail, Lock, UserPlus, AlertCircle, User } from 'lucide-react';
+import { Mail, Lock, UserPlus, AlertCircle, User, EyeOff, Eye } from 'lucide-react';
 import VideoBackground from '@/app/components/VideoBackground';
 import AnimatedInput from '@/app/components/AnimatedInput';
 import Link from 'next/link';
@@ -32,6 +32,8 @@ const RegisterPage = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const router = useRouter()
    const { toast } = useToast();
 
@@ -176,25 +178,44 @@ const RegisterPage = () => {
               error={errors.email?.message}
               {...register("email")}
             />
-            
-            <AnimatedInput
+            <div className='relative'>
+              <AnimatedInput
               id="password"
               label="Password"
               icon={Lock}
-              type="password"
+              type={showPassword ? "text" : "password"}
               error={errors.password?.message}
               {...register("password")}
             />
-            
+            <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-3.5 text-gray-400 hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-mystery-500 rounded"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+            </button>
+            </div>
+
+            <div className='relative'>
             <AnimatedInput
               id="confirmPassword"
               label="Confirm Password"
               icon={Lock}
-              type="password"
+              type={showConfirmPassword ? "text" : "password"}
               error={errors.confirmPassword?.message}
               {...register("confirmPassword")}
               className="mb-6"
             />
+            <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-3 top-3.5 text-gray-400 hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-mystery-500 rounded"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+            </button>
+            </div>
             
             <label className="flex items-start mb-6">
               <input
