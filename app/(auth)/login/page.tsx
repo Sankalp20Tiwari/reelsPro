@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
-import { Mail, Lock, LogIn, AlertCircle, Play } from 'lucide-react';
+import { Mail, Lock, LogIn, AlertCircle, Play, EyeOff, Eye } from 'lucide-react';
 import VideoBackground from '@/app/components/VideoBackground';
 import AnimatedInput from '@/app/components/AnimatedInput';
 import { useRouter } from 'next/navigation';
@@ -25,6 +25,8 @@ const LoginPage = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+
   const router = useRouter();
   const { toast } = useToast();
 
@@ -174,15 +176,25 @@ const LoginPage = () => {
               error={errors.email?.message}
               {...register("email")}
             />
-            
-            <AnimatedInput
+            <div className='relative'>
+              <AnimatedInput
               id="password"
               label="Password"
               icon={Lock}
-              type="password"
+              type={showPassword ? "text" : "password"}
               error={errors.password?.message}
               {...register("password")}
             />
+            <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-3.5 text-gray-400 hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-mystery-500 rounded"
+            aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+          </button>
+            </div>
+
             
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center">
